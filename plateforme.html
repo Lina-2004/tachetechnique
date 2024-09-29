@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <!-- Boxicons CDN link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            margin-top: 10px;
+            padding: 2px;
+            min-height: 100vh;
+            color: #0056b3;
+        }
+
+        img {
+            width: 120px;
+            margin-top: auto;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #04398cb0;
+            position: fixed;
+            transition: all 0.5s ease;
+            padding: 10px;
+        }
+
+        .sidebar.close {
+            width: 60px;
+        }
+
+        .logoname {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin-left: 10px;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .sidebar.close .logoname {
+            opacity: 0;
+        }
+
+        #btn {
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            justify-content: right;
+        }
+        
+        .logo_content{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .navlist {
+            margin-top: 20px;
+        }
+
+        .navlist li {
+            list-style: none;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navlist li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.close .navlist li a {
+            font-size: 16px;
+        }
+
+        .navlist li a i {
+            font-size: 24px;
+            margin-right: 10px;
+            transition: margin-right 0.5s ease;
+        }
+
+        .sidebar.close .navlist li a i {
+            margin-right: 0;
+        }
+
+        .content {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.847);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        h1 {
+            text-align: center;
+            color: #110a70;
+            padding-bottom: 50px;
+        }
+        h2{
+            color: #bc8347;
+            font-size: 25px;
+            justify-content: left;
+        }
+
+        .home-message {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 24px;
+            color: #110a70;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: none;
+            max-width: 600px;
+            margin: 50px auto;
+            height: 500px;
+            
+        }
+        .img1{
+            /* width: 40px; */
+            justify-content: center;
+    
+        }
+        
+        .button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #18468ef2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .zonerecherche {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+       
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #b5cce5;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            font-size: 16px;
+            color: #110a70;
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #18468ef2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+        .img2{
+        justify-content: space-between;
+        display: flex;
+        margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <div class="logoname">Menu</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="navlist">
+            <li>
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="search...">
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-map'></i>
+                    <span class="links_name">Trouver notre établissement</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="showLogin()">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Login/Register</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="showHome()">
+                    <i class='bx bx-home'></i>
+                    <span class="links_name">Home</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Accueil -->
+    <div class="home-message" id="homeMessage">
+        <div class="img1">
+            <img src="education.webp" alt="">
+        </div>
+        <h1>Bienvenue dans la plateforme Etudiant </h1>
+        <h2>Ensemble vers l'excellence !!</h2>
+    </div>
+
+    <!-- Login Form -->
+    <div class="content" id="loginContainer">
+        <div class="img2">
+            <h2>Connexion</h2>
+            <img src="education.webp" alt="">
+        </div>
+        <form>
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" placeholder="Entrez votre email" required><br><br>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required><br><br>
+            <button type="submit">Se connecter</button>
+        </form>
+        <p>Pas de compte ? <a href="#" onclick="showRegister()">Inscrivez-vous</a></p>
+        <div class="back-button" onclick="showHome()">Retour</div>
+    </div>
+
+    <!-- Register Form -->
+    <div class="content" id="registerContainer">
+        <div class="img2">
+            <h2>Inscription</h2>
+            <img src="education.webp" alt="">
+        </div>
+        <form>
+            <label for="username">Nom d'utilisateur :</label>
+            <input type="text" id="username" name="username" placeholder="Entrez votre nom d'utilisateur" required><br><br>
+            <label for="emailRegister">Email :</label>
+            <input type="email" id="emailRegister" name="email" placeholder="Entrez votre email" required><br><br>
+            <label for="passwordRegister">Mot de passe :</label>
+            <input type="password" id="passwordRegister" name="password" placeholder="Entrez votre mot de passe" required><br><br>
+            <button type="submit">S'inscrire</button>
+        </form>
+        <p>Déjà un compte ? <a href="#" onclick="showLogin()">Connectez-vous</a></p>
+        <div class="back-button" onclick="showHome()">Retour</div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        let sidebar = document.getElementById("sidebar");
+        let btn = document.getElementById("btn");
+        let loginContainer = document.getElementById("loginContainer");
+        let registerContainer = document.getElementById("registerContainer");
+        let homeMessage = document.getElementById("homeMessage");
+
+        btn.onclick = function () {
+            sidebar.classList.toggle("close");
+        };
+
+        function showLogin() {
+            loginContainer.style.display = "block";
+            registerContainer.style.display = "none";
+            homeMessage.style.display = "none";
+        }
+
+        function showRegister() {
+            loginContainer.style.display = "none";
+            registerContainer.style.display = "block";
+            homeMessage.style.display = "none";
+        }
+
+        function showHome() {
+            loginContainer.style.display = "none";
+            registerContainer.style.display = "none";
+            homeMessage.style.display = "block";
+        }
+
+        showHome();
+    </script>
+</body>
+
+</html>
